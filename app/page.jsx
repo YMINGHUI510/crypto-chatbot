@@ -255,7 +255,7 @@ export default function Home() {
           >
             <div className="w-full max-w-2xl flex-1 flex flex-col justify-center items-center">
               <div className="flex flex-col items-center justify-center mb-24 select-none">
-                <h1 className="text-5xl font-extrabold text-gray-900 mb-4 tracking-tight drop-shadow-sm text-center">Multi-model AI Chatbot</h1>
+                <h1 className="text-5xl font-extrabold text-gray-900 mb-4 tracking-tight drop-shadow-sm text-center">Multi-model AI ChatbotV1</h1>
                 <p className="text-lg text-gray-500 mb-2 text-center max-w-2xl">
                   Unlock new ways of thinking, creating, and working—AI empowers your ideas and accelerates your journey.
                 </p>
