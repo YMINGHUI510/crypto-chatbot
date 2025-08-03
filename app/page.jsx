@@ -144,15 +144,13 @@ export default function Home() {
             <ChatInputBar
               onSend={handleSend}
               isThinking={isThinking}
-              selectedModel={selectedModel}
-              setSelectedModel={setSelectedModel}
               cardHeight={120}
               className="bg-white text-black placeholder-gray-500 focus:ring-2 focus:ring-purple-600"
             />
           </div>
 
           {/* TradingView 桌面端小窗 */}
-          <div 
+          {/* <div 
             className={`absolute bottom-4 left-4 
               ${isExpanded ? "w-[90%] h-[80%]" : "hidden lg:block w-1/2 h-1/2"} 
               shadow-lg border border-gray-300 rounded-lg overflow-hidden bg-white z-40 transition-all duration-300`}
@@ -177,10 +175,10 @@ export default function Home() {
               scrolling="no"
               className="rounded-b-lg"
             ></iframe>
-          </div>
+          </div> */}
 
           {/* TradingView 移动端全宽 */}
-          <div className="block lg:hidden w-full h-[400px] mt-4 px-4">
+          {/* <div className="block lg:hidden w-full h-[400px] mt-4 px-4">
             <iframe
               src={`https://s.tradingview.com/widgetembed/?symbol=BINANCE:${hoveredCoin}&interval=30&hidesidetoolbar=0&theme=light`}
               width="100%"
@@ -190,7 +188,7 @@ export default function Home() {
               scrolling="no"
               className="rounded-lg border border-gray-300"
             ></iframe>
-          </div>
+          </div> */}
         </div>
 
         {/* 右侧 Top 10 Crypto */}

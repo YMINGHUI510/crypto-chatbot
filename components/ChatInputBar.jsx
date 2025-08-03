@@ -5,8 +5,8 @@ import { FaArrowUp } from "react-icons/fa";
 export default function ChatInputBar({
   onSend,
   isThinking,
-  selectedModel,
-  setSelectedModel,
+  // selectedModel,
+  // setSelectedModel,
   cardHeight = 120,
 }) {
   const [input, setInput] = useState("");
@@ -61,10 +61,10 @@ export default function ChatInputBar({
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
         />
-        {/* 下方一行：左模型选择，右发送按钮 */}
+        {/* 下方一行：右发送按钮 */}
         <div className="flex items-center justify-between w-full gap-2 mt-2">
           <div className="flex-1">
-            <ModelSelector value={selectedModel} onChange={setSelectedModel} borderless />
+            {/* <ModelSelector value={selectedModel} onChange={setSelectedModel} borderless /> */}
           </div>
           <button
             className="ml-2 w-10 h-10 flex items-center justify-center rounded-full bg-black text-white text-xl disabled:bg-gray-300 disabled:cursor-not-allowed shadow-md transition hover:bg-black focus:outline-none"
