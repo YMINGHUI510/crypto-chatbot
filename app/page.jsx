@@ -129,27 +129,14 @@ export default function Home() {
         </div>
       )}
 
-      <div className="flex flex-1 overflow-hidden">
+      <div className="flex flex-1 flex-col lg:flex-row overflow-hidden">
         {/* 左侧 Chatbot */}
-        <div className="w-2/3 flex flex-col overflow-hidden border-r border-gray-300">
+        <div className="lg:w-2/3 w-full flex flex-col overflow-hidden border-r border-gray-300 relative">
           <div ref={chatAreaRef} className="flex-1 overflow-y-auto px-6 py-4">
             <div className="max-w-3xl mx-auto space-y-4">
               <ChatHistory messages={messages} />
               <div ref={chatBottomRef} />
             </div>
-          </div>
-
-          {/* TradingView 固定在左栏中间 */}
-          <div className="flex justify-center my-4">
-            <iframe
-              src={`https://s.tradingview.com/widgetembed/?symbol=BINANCE:${hoveredCoin}&interval=30&hidesidetoolbar=0&theme=light`}
-              width="95%"
-              height="500"
-              frameBorder="0"
-              allowTransparency="true"
-              scrolling="no"
-              className="rounded-lg border border-gray-300"
-            ></iframe>
           </div>
 
           <div className="p-4 bg-gray-100 shadow-inner">
@@ -162,10 +149,23 @@ export default function Home() {
               className="bg-white text-black placeholder-gray-500 focus:ring-2 focus:ring-purple-600"
             />
           </div>
+
+          {/* TradingView 缩小并固定在左下角 */}
+          <div className="absolute bottom-4 left-4 w-1/4 h-1/4 shadow-lg border border-gray-300 rounded-lg overflow-hidden">
+            <iframe
+              src={`https://s.tradingview.com/widgetembed/?symbol=BINANCE:${hoveredCoin}&interval=30&hidesidetoolbar=0&theme=light`}
+              width="100%"
+              height="100%"
+              frameBorder="0"
+              allowTransparency="true"
+              scrolling="no"
+              className="rounded-lg"
+            ></iframe>
+          </div>
         </div>
 
         {/* 右侧 Top 10 Crypto */}
-        <div className="w-1/3 p-6 bg-gray-50 overflow-y-auto">
+        <div className="lg:w-1/3 w-full p-6 bg-gray-50 overflow-y-auto">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-black">🔥 Top 10 Cryptos</h2>
             <div className="flex items-center space-x-2 text-gray-600 text-xs">
