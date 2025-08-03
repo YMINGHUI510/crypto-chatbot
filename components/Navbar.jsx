@@ -3,7 +3,7 @@ import { FaGithub, FaMoon, FaSun } from "react-icons/fa";
 
 export default function Navbar() {
   return (
-    <nav className="w-full h-14 flex items-center justify-between px-4 bg-transparent shadow-none">
+    <nav className="w-full h-14 flex items-center justify-between px-4 bg-transparent shadow-none border-b border-gray-200 z-20">
       <div className="flex items-center font-bold text-lg" style={{ color: '#222' }}>
         <span className="inline-block align-middle" style={{ width: 28, height: 28 }}>
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 128 128">
@@ -16,7 +16,7 @@ export default function Navbar() {
       </div>
       <div className="flex items-center gap-4">
         <a
-          href="https://github.com/tomcomtang/ai-chatbot-starter"
+          href="https://github.com/YMINGHUI510/crypto-chatbot"
           target="_blank"
           rel="noopener noreferrer"
           className="text-xl transition-all duration-200 hover:text-blue-600 hover:scale-110"
