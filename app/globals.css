@@ -87,4 +87,17 @@
 .scroll-to-bottom-btn svg {
   color: #222;
   transition: color 0.2s;
-} 
+}
+
+.top10CryptoOption {
+  cursor:pointer;
+}
+
+.top10CryptoOption:hover {
+  box-shadow: 0 4px 10px 0 #cdd0d5;
+}
+
+.top10CryptoOption:active {
+  box-shadow: 0 2px 6px 0 #cdd0d5;
+  transform: translateY(1px);
+}

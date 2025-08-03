@@ -60,7 +60,7 @@ export default function MessageItem({ message }) {
 
   // 用户消息：使用微信风格气泡形状（绿色气泡，右下角带小三角），浅灰背景，深色文字
   return (
-    <div className="flex items-center justify-end mb-2">
+    <div className="flex items-start justify-end mb-2">
       <div className="relative max-w-[80%] flex items-center">
         <div className="bg-[#f3f4f6] text-gray-900 px-4 py-2 rounded-[18px] shadow flex items-center min-h-[40px]" style={{ lineHeight: '1.7' }}>
           <div className="user-message-markdown text-base text-gray-900 w-full" style={{ display: 'flex', alignItems: 'center' }}>
@@ -70,17 +70,17 @@ export default function MessageItem({ message }) {
         {/* 微信风格右下角三角，SVG与圆角自然衔接 */}
         <svg
           className="absolute right-[-10px] bottom-2"
-          width="16" height="18" viewBox="0 0 16 18" fill="none"
+          width="16" minHeight="18" viewBox="0 0 16 18" fill="none"
           xmlns="http://www.w3.org/2000/svg"
           style={{ zIndex: 1 }}
         >
-          <path
+          {/* <path
             d="M0 18 Q8 2 16 8 Q10 12 0 18 Z"
             fill="#f3f4f6"
-          />
+          /> */}
         </svg>
       </div>
-      <div className="flex-shrink-0 ml-4">
+      <div className="flex-shrink-0 ml-4 py-2">
         <FaUserCircle className="text-2xl" style={{ color: '#555' }} />
       </div>
     </div>

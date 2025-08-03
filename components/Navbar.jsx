@@ -4,14 +4,15 @@ import { FaGithub, FaMoon, FaSun } from "react-icons/fa";
 export default function Navbar() {
   return (
     <nav className="w-full h-14 flex items-center justify-between px-4 bg-transparent shadow-none">
-      <div className="flex items-center gap-2 font-bold text-lg" style={{ color: '#222' }}>
+      <div className="flex items-center font-bold text-lg" style={{ color: '#222' }}>
         <span className="inline-block align-middle" style={{ width: 28, height: 28 }}>
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="2" y="2" width="24" height="24" rx="7" fill="#fff" stroke="#222" strokeWidth="2"/>
-            <path d="M9 9h10M9 14h7M9 19h10" stroke="#222" strokeWidth="2" strokeLinecap="round"/>
-          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 128 128">
+  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central"
+        font-family="Arial, sans-serif" font-size="96" fill="#F7931A">₿</text>
+</svg>
+
         </span>
-        <span>Chatbot</span>
+        <span>CryptoChat</span>
       </div>
       <div className="flex items-center gap-4">
         <a

@@ -130,9 +130,9 @@ export default function Home() {
         </div>
       )}
 
-      <div className="flex flex-1 flex-col lg:flex-row overflow-hidden">
+      <div className="flex flex-1 flex-col md:flex-row overflow-hidden">
         {/* 左侧 Chatbot */}
-        <div className="lg:w-2/3 w-full flex flex-col overflow-hidden border-r border-gray-300 relative">
+        <div className="md:w-2/3 md:h-[100%] h-1/2 w-full flex flex-col overflow-hidden border-r border-gray-300 relative">
           <div ref={chatAreaRef} className="flex-1 overflow-y-auto px-6 py-4">
             <div className="max-w-3xl mx-auto space-y-4">
               <ChatHistory messages={messages} />
@@ -144,17 +144,62 @@ export default function Home() {
             <ChatInputBar
               onSend={handleSend}
               isThinking={isThinking}
-              selectedModel={selectedModel}
-              setSelectedModel={setSelectedModel}
-              cardHeight={120}
+              cardHeight={80}
               className="bg-white text-black placeholder-gray-500 focus:ring-2 focus:ring-purple-600"
             />
           </div>
 
+        </div>
+
+        {/* 右侧 Top 10 Crypto */}
+        <div className="md:w-1/3 md:h-[100%] h-1/2 w-full p-3 bg-gray-50 overflow-y-auto">
+        <div className={`${isExpanded ? "h-1/4" : "h-1/2"} overflow-y-auto transition-all duration-300 p-5 border border-gray-300 rounded-lg`}>
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold text-black">🔥 Top 10 Cryptos</h2>
+            <div className="flex items-center space-x-2 text-gray-600 text-xs">
+              <svg className="animate-spin w-4 h-4 text-purple-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 100 16v-4l-3 3 3 3v-4a8 8 0 01-8-8z"></path>
+              </svg>
+              <span>Auto-refreshing every 30s</span>
+            </div>
+          </div>
+          <div className="text-gray-500 mb-4">
+          <i>Click on an asset to see the Candlestick chart and follow the price movement.</i>
+          </div>
+          <div className="grid grid-cols-1 gap-4">
+            {coins.map((coin) => {
+              const change = coin.price_change_percentage_24h;
+              let highlightClass = "bg-white";
+              if (change >= 5) highlightClass = "bg-green-100 shadow-lg shadow-green-300";
+              else if (change <= -5) highlightClass = "bg-red-100 shadow-lg shadow-red-300";
+
+              return (
+                <div
+                  key={coin.id}
+                  onClick={() => setHoveredCoin(coin.symbol.toUpperCase() + "USDT")}
+                  // onMouseLeave={() => setHoveredCoin("BTCUSDT")}
+                  className={`${hoveredCoin === coin.symbol.toUpperCase() + "USDT" ? "border-blue-500 border-4" : "border-gray-200"} top10CryptoOption ${highlightClass} rounded-xl p-4 flex items-center justify-between border`}
+                >
+                  <div className="flex items-center space-x-3">
+                    <img src={coin.image} alt={coin.name} className="w-8 h-8 rounded-full border border-gray-300" />
+                    <div>
+                      <p className="font-semibold">{coin.name} ({coin.symbol.toUpperCase()})</p>
+                      <p className="text-sm text-gray-600">${coin.current_price.toLocaleString()}</p>
+                    </div>
+                  </div>
+                  <span className={`text-sm font-bold ${change >= 0 ? "text-green-600" : "text-red-600"}`}>
+                    {change.toFixed(2)}%
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
           {/* TradingView 桌面端小窗 */}
           <div 
-            className={`absolute bottom-4 left-4 
-              ${isExpanded ? "w-[90%] h-[80%]" : "hidden lg:block w-1/2 h-1/2"} 
+            className={`my-2 w-full
+              ${isExpanded ? "h-3/4" : "hidden md:block h-1/2"} 
               shadow-lg border border-gray-300 rounded-lg overflow-hidden bg-white z-40 transition-all duration-300`}
           >
             <div className="flex justify-between items-center bg-gray-200 px-2 py-1">
@@ -180,7 +225,7 @@ export default function Home() {
           </div>
 
           {/* TradingView 移动端全宽 */}
-          <div className="block lg:hidden w-full h-[400px] mt-4 px-4">
+          <div className="block md:hidden w-full h-1/2 py-1">
             <iframe
               src={`https://s.tradingview.com/widgetembed/?symbol=BINANCE:${hoveredCoin}&interval=30&hidesidetoolbar=0&theme=light`}
               width="100%"
@@ -190,49 +235,6 @@ export default function Home() {
               scrolling="no"
               className="rounded-lg border border-gray-300"
             ></iframe>
-          </div>
-        </div>
-
-        {/* 右侧 Top 10 Crypto */}
-        <div className="lg:w-1/3 w-full p-6 bg-gray-50 overflow-y-auto">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-black">🔥 Top 10 Cryptos</h2>
-            <div className="flex items-center space-x-2 text-gray-600 text-xs">
-              <svg className="animate-spin w-4 h-4 text-purple-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 100 16v-4l-3 3 3 3v-4a8 8 0 01-8-8z"></path>
-              </svg>
-              <span>Auto-refreshing every 30s</span>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 gap-4">
-            {coins.map((coin) => {
-              const change = coin.price_change_percentage_24h;
-              let highlightClass = "bg-white";
-              if (change >= 5) highlightClass = "bg-green-100 shadow-lg shadow-green-300";
-              else if (change <= -5) highlightClass = "bg-red-100 shadow-lg shadow-red-300";
-
-              return (
-                <div
-                  key={coin.id}
-                  onMouseEnter={() => setHoveredCoin(coin.symbol.toUpperCase() + "USDT")}
-                  onMouseLeave={() => setHoveredCoin("BTCUSDT")}
-                  className={`${highlightClass} rounded-xl p-4 flex items-center justify-between border border-gray-200`}
-                >
-                  <div className="flex items-center space-x-3">
-                    <img src={coin.image} alt={coin.name} className="w-8 h-8 rounded-full border border-gray-300" />
-                    <div>
-                      <p className="font-semibold">{coin.name} ({coin.symbol.toUpperCase()})</p>
-                      <p className="text-sm text-gray-600">${coin.current_price.toLocaleString()}</p>
-                    </div>
-                  </div>
-                  <span className={`text-sm font-bold ${change >= 0 ? "text-green-600" : "text-red-600"}`}>
-                    {change.toFixed(2)}%
-                  </span>
-                </div>
-              );
-            })}
           </div>
         </div>
       </div>
