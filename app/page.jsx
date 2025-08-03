@@ -22,6 +22,7 @@ export default function Home() {
   const [hoveredCoin, setHoveredCoin] = useState("BTCUSDT");
   const [errorTip, setErrorTip] = useState("");
   const [showErrorTip, setShowErrorTip] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   // 获取模型
   useEffect(() => {
@@ -150,8 +151,23 @@ export default function Home() {
             />
           </div>
 
-          {/* TradingView 缩小并固定在左下角 */}
-          <div className="absolute bottom-4 left-4 w-1/4 h-1/4 shadow-lg border border-gray-300 rounded-lg overflow-hidden">
+          {/* TradingView 桌面端小窗 */}
+          <div 
+            className={`absolute bottom-4 left-4 
+              ${isExpanded ? "w-[90%] h-[80%]" : "hidden lg:block w-1/2 h-1/2"} 
+              shadow-lg border border-gray-300 rounded-lg overflow-hidden bg-white z-40 transition-all duration-300`}
+          >
+            <div className="flex justify-between items-center bg-gray-200 px-2 py-1">
+              <span className="text-sm font-semibold text-black">
+                📊 {hoveredCoin.replace("USDT", "")}/USDT
+              </span>
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="text-xs px-2 py-1 bg-purple-600 text-white rounded hover:bg-purple-700"
+              >
+                {isExpanded ? "Shrink" : "Expand"}
+              </button>
+            </div>
             <iframe
               src={`https://s.tradingview.com/widgetembed/?symbol=BINANCE:${hoveredCoin}&interval=30&hidesidetoolbar=0&theme=light`}
               width="100%"
@@ -159,7 +175,20 @@ export default function Home() {
               frameBorder="0"
               allowTransparency="true"
               scrolling="no"
-              className="rounded-lg"
+              className="rounded-b-lg"
+            ></iframe>
+          </div>
+
+          {/* TradingView 移动端全宽 */}
+          <div className="block lg:hidden w-full h-[400px] mt-4 px-4">
+            <iframe
+              src={`https://s.tradingview.com/widgetembed/?symbol=BINANCE:${hoveredCoin}&interval=30&hidesidetoolbar=0&theme=light`}
+              width="100%"
+              height="100%"
+              frameBorder="0"
+              allowTransparency="true"
+              scrolling="no"
+              className="rounded-lg border border-gray-300"
             ></iframe>
           </div>
         </div>
