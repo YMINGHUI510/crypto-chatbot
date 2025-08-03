@@ -14,7 +14,7 @@ export default function Home() {
     }
   ]);
   const [isThinking, setIsThinking] = useState(false);
-  const [selectedModel, setSelectedModel] = useState("deepseek-chat");
+  const [selectedModel, setSelectedModel] = useState("gpt-4o-mini");
   const [availableModels, setAvailableModels] = useState([]);
   const chatBottomRef = useRef(null);
   const chatAreaRef = useRef(null);
@@ -56,7 +56,7 @@ export default function Home() {
         .catch(console.error);
     };
     fetchData();
-    const interval = setInterval(fetchData, 5000);
+    const interval = setInterval(fetchData, 30000); // 每30秒刷新
     return () => clearInterval(interval);
   }, []);
 
@@ -173,7 +173,7 @@ export default function Home() {
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 100 16v-4l-3 3 3 3v-4a8 8 0 01-8-8z"></path>
               </svg>
-              <span>Auto-refreshing every 5s</span>
+              <span>Auto-refreshing every 30s</span>
             </div>
           </div>
 
